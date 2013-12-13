@@ -166,6 +166,7 @@
    multi-term
    git-emacs
    doxymacs
+   protobuf-mode
    )
 )
 
@@ -206,6 +207,11 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/doxymacs")
 (require 'doxymacs)
 (add-hook 'c-mode-common-hook 'doxymacs-mode)
+
+;; protobuf-mode
+(add-to-list 'load-path "~/.emacs.d/el-get/protobuf-mode")
+(require 'protobuf-mode)
+(setq auto-mode-alist  (cons '(".proto$" . protobuf-mode) auto-mode-alist))
 
 ;; disaster -- Disassemble C/C++ code under cursor in Emacs;;
 (add-to-list 'load-path "~/.emacs.d/el-get/disaster")
