@@ -283,6 +283,9 @@
 (require 'yasnippet)
 (yas/global-mode 1)
 
+;; Company mode - complete multiple sources
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;;==============publish org ====================
 ;; Temporary add this key binding
 (add-hook 'org-mode-hook
