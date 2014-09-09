@@ -1,0 +1,22 @@
+[core]
+	editor = ~/scripts/apps-editor.sh
+[user]
+	name = Sherman Hsu
+	email = sherman_hsu@5vtechnologies.com
+[sendemail]
+	from = cr_sherman_hsu@5vtechnologies.com
+	confirm = auto
+	suppresscc = all
+	smtpserver = mail.5vtechnologies.com
+	thread = true
+	chainreplyto = true
+	smtppass = fvtpwd
+	smtpuser = cr_sherman_hsu
+	aliasesfile = /home/nonnn/.mutt/aliases
+	aliasfiletype = mutt
+[format]
+	numbered = yes
+	signoff = true
+	find-renames = true
+[color]
+	ui = auto
