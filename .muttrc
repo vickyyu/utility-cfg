@@ -1,0 +1,31 @@
+set editor="~/scripts/apps-editor.sh"
+color normal default default
+
+set mbox="~/Mail/inbox"
+set spoolfile="~/Mail/inbox"
+set postponed="~/Mail/postponed"
+set record="~/Mail/sent"
+
+set alias_file="~/.mutt/aliases"
+source $alias_file
+
+set certificate_file="~/.mutt/certificates"
+set ssl_verify_dates=no
+set ssl_verify_host=no
+
+mailboxes "=inbox"
+set check_new = yes
+set timeout = 600
+set realname=cr_sherman_hsu
+my_hdr From: cr_sherman_hsu@5vtechnologies.com
+
+set pop_user=cr_sherman_hsu
+set pop_pass=fvtpwd
+set pop_host=mail.5vtechnologies.com
+
+set smtp_authenticators="login"
+set smtp_pass=fvtpwd
+set smtp_url=smtp://cr_sherman_hsu@10.21.0.200
+
+set sort=threads
+set envelope_from=yes
