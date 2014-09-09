@@ -1,0 +1,2 @@
+# deb http://ppa.launchpad.net/dns/gnu/ubuntu natty main # 停用升級至 natty
+# deb-src http://ppa.launchpad.net/dns/gnu/ubuntu natty main # 停用升級至 natty
