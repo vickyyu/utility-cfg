@@ -3,8 +3,8 @@
 #original hardstatus
 #hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y "
 
-# Using C-n instead of C-a
-escape ^Nn #Instead of control-a
+# Using C-] instead of C-a
+escape ^]] #Instead of control-a
 
 # Avoid C-x C-s issue
 defflow off
