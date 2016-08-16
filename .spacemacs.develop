@@ -103,7 +103,7 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'hybrid
+   dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -300,7 +300,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
        ;; White normal text
        (base . "#ffffff")
        ;; Black Background
-       (bg1  . "#000000"))))
+       (bg1  . "#000000")
+       (bg2  . "#303030")
+       )))
   ;; C-C++
   (setq-default c-default-style "linux")
   (add-hook 'c-mode-common-hook
