@@ -333,6 +333,8 @@ you should place your code here."
   (xterm-mouse-mode -1)
   ;; Powerline
   (setq powerline-default-separator 'nil)
+   ;; Scroll compilation
+  (setq compilation-scroll-output t)
   ;; Evil
   (bind-key "\C-e" 'evil-end-of-line evil-normal-state-map)
   (bind-key "\C-e" 'evil-end-of-line evil-visual-state-map)
