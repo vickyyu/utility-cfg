@@ -55,7 +55,7 @@ plugins=(osx git docker docker-compose tmux gitfast zsh-autosuggestions zsh-hist
 
 # User configuration
 
-export PATH="/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin"
+export PATH="$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 # MacPorts Installer addition on 2015-10-13_at_11:52:54: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
