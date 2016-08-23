@@ -356,7 +356,7 @@ you should place your code here."
   (setq-default evil-escape-key-sequence nil)
   ;; Powerline
   (setq powerline-default-separator 'nil)
-   ;; Scroll compilation
+  ;; Compile
   (setq compilation-scroll-output t)
   ;; Evil
   (bind-key "\C-e" 'evil-end-of-line evil-normal-state-map)
