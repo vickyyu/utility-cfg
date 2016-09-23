@@ -421,13 +421,8 @@ you should place your code here."
     (bind-key "C-c s=" 'helm-cscope-find-assignments-to-this-symbol helm-cscope-mode-map)
     (bind-key "C-c su" 'helm-cscope-pop-mark helm-cscope-mode-map)
     (bind-key "C-c sI" 'cscope-index-files helm-cscope-mode-map))
+
   ;; Terminal
-  (custom-set-variables
-   '(term-bind-key-alist
-     (quote (("C-c C-c" . term-interrupt-subjob)
-             ("C-<right>" . term-send-forward-word)
-             ("C-<left>" . term-send-backward-word)
-             ("M-d" . term-send-forward-kill-word)))))
   (defun evil-insert-and-term-char-mode ()
     (interactive)
     (term-char-mode)
@@ -454,6 +449,15 @@ you should place your code here."
               (lambda()
                 (hs-minor-mode 1)
                 (bind-key "TAB" 'hs-toggle-hiding evil-normal-state-local-map))))
+  ;; Terminal key-bindings
+  (when (configuration-layer/layer-usedp 'shell)
+    (custom-set-variables
+     '(term-bind-key-alist
+       (quote (("C-c C-c" . term-interrupt-subjob)
+               ("C-c C-y" . term-paste)
+               ("C-<right>" . term-send-forward-word)
+               ("C-<left>" . term-send-backward-word)
+               ("M-d" . term-send-forward-kill-word))))))
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
