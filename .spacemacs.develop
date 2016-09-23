@@ -434,6 +434,7 @@ you should place your code here."
   (with-eval-after-load "term"
     (add-hook 'term-mode-hook
               (lambda()
+                (clean-aindent-mode -1)
                 (bind-key "i" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
                 (bind-key "<escape>" 'evil-normal-state-and-term-line-mode evil-hybrid-state-local-map))))
   ;; Enable hs mode for XML folding
@@ -457,7 +458,9 @@ you should place your code here."
                ("C-c C-y" . term-paste)
                ("C-<right>" . term-send-forward-word)
                ("C-<left>" . term-send-backward-word)
-               ("M-d" . term-send-forward-kill-word))))))
+               ("M-d" . term-send-forward-kill-word)
+               ("M-DEL" . term-send-backward-kill-word)))))
+    )
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
