@@ -371,6 +371,13 @@
 - First Level will be section, Second level will be subsection, third level will be frame 
 **** Export beamer
 | C-c C-e l P | Export org to PDF(beamer) |
+**** Change font size in code block
+Add following line in org file header
+Reference: http://emacs.stackexchange.com/questions/23871/how-to-change-font-size-in-code-listings-in-org-mode-beamer
+#+begin_src org
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+#+end_src
 ** Magit mode
 *** Branch
     | b b | Checkout to specific branch |
@@ -661,74 +668,42 @@
    #+BEGIN_SRC elisp
    Eval: (buffer-file-name)
    #+END_SRC
+
 ** Get file name w/o directory path
    #+BEGIN_SRC elisp
    Eval: (file-name-nondirectory (buffer-file-name))
    #+END_SRC
+
 ** Get last directory name
    #+BEGIN_SRC elisp
    Eval: (file-name-nondirectory (directory-file-name (file-name-directory (buffer-file-name))))
    #+END_SRC
+
+** How to add a hook to only run in a particular mode?
+Ref: http://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode
+
+Add a-test-func in after-save-hook only in org-mode
+#+begin_src
+(add-hook 'org-mode-hook
+          (lambda ()
+             (add-hook 'after-save-hook 'a-test-func nil 'make-it-local)))
+#+end_src
+
+** Advising Functions
+*** Advised hello world
+https://www.emacswiki.org/emacs/AdvisingFunctions
+#+begin_src emacs-lisp
+(defun foo () (interactive) (insert "hello"))
+(defadvice foo (after foo-after activate) (insert " world!\n"))
+(foo) ;=> hello world!
+#+end_src
+#+begin_src emacs-lisp
+;; now you can unadvise the advised function
+(ad-unadvise 'foo)
+(foo) ;=> hello
+#+end_src
+
 * Spacemacs
-** Magic
-*** Auto-completion
-| ~M-/~     | Expand a snippet if text before point is a prefix of a snippet |
-| ~SPC i s~ | List all current yasnippets for inserting                      |
-
-*** C-C++
-| Mark a region of code then ~SPC m r~ | Extract code to new function |
-
-*** HTML
-| ~SPC m .~   | into micro state                                          |
-| ~SPC m r d~ | delete the current element (does not delete the children) |
-| ~SPC m r r~ | rename current element                                    |
-| ~SPC m r w~ | wrap current element                                      |
-
-*** Jump
-    | ~SPC SPC~ | master branch: avy word                             |
-    | ~SPC j j~ | develop branch: avy word                            |
-    | ~SPC j i~ | jump-in-buffer, like tlist list functions in buffer |
-
-*** Projectile
-| ~SPC p f~ | find file                           |
-| ~SPC p p~ | switch project                      |
-| ~SPC p o~ | run =multi-occur=                   |
-| ~SPC p r~ | open a recent file                  |
-| ~SPC p R~ | replace a string                    |
-| ~SPC p t~ | open =NeoTree= in =projectile= root |
-| ~C-c p l~ | find file in directory              |
-
-*** Replace
-**** Highlight symbol and edit (iedit)
-| ~*~       | initiate navigation transient state on current symbol and jump forwards      |
-| ~#~       | initiate navigation transient state on current symbol and jump backwards     |
-| ~SPC s e~ | edit all occurrences of the current symbol(/)                                |
-| ~SPC s h~ | highlight the current symbol and all its occurrence within the current range |
-| ~SPC v e~ | mark a word goto iedit mode                                                  |
-***** Examples
- -  manual selection of several words then replace: ~v w w SPC s e S "toto" ESC ESC~
- -  append text to a word on two lines: ~v i w SPC s e J i "toto" ESC ESC~
- -  substitute symbol /with expand-region/: ~SPC v v e S "toto" ESC ESC~
- -  replace symbol with yanked (copied) text /with expand region/: ~SPC v e p ESC ESC~
-*** Search
-| ~SPC s S~ | search with the first found tool with default input |
-| ~SPC s B~ | search with the first found tool with default input |
-| ~SPC s F~ | search with the first found tool with default input |
-| ~SPC r y~ | search from kill ring                               |
-| ~SPC r l~ | resume last helm result                             |
-
-*** Semantic
-| ~SPC s j~ | jump-in-buffer, like tlist list functions in buffer  |
-
-*** Syntax check
-| ~SPC e l | display a list of all the errors. RET to move to error |
-
-*** Spacemacs-editing
-| ~SPC v~              | Expand region                             |
-| ~SPC v (repeat v) /~ | Expand region and search in project       |
-| ~SPC v (repeat v) f~ | Expand region and search in file          |
-| ~SPC v (repeat v) b~ | Expand region and search in opened buffer |
-
 ** Key bindings
 *** Changes
 ****  Magit
@@ -758,12 +733,28 @@
 
 *** Evil
 **** Surround ~s~
+**** Evil-commentary
+| Key Binding | Description          |
+|-------------+----------------------|
+| ~SPC ;~     | comment operator     |
+| ~gc~        | Combine motion       |
+| ~gcc~       | comment current line |
+| ~gcap~      | comment paragraphs   |
+| ~gy~        | comment and yank     |
 
 *** File
 | ~SPC f F~ | try to open the file under point ~helm~   |
 | ~SPC f j~ | jump tothe current buffer file in dired   |
 | ~SPC f r~ | open a recent file with ~helm~            |
 | ~SPC f t~ | toggle file tree side bar using ~NeoTree~ |
+
+*** Folding
+| z a | evil-toggle-fold                                 |
+| z o | evil-open-fold                                   |
+| z O | evil-open-fold-rc Open fold at point recursively |
+| z c | evil-close-fold                                  |
+| z r | evil-open-folds                                  |
+| z m | evil-close-folds                                 |
 
 *** Helm
 |                                | helm is regex                                |
@@ -773,6 +764,11 @@
 | ~C-t~                          | Change helm buffer location                  |
 | ~C-M-<up>~, ~M-<prior(PgUp)>~  | Scroll other window up                       |
 | ~C-M-<down>~, ~M-<down(PgDn)>~ | Scroll other window down                     |
+*** Helm-ag
+| ~search pattern add option -A<n> -B<n> -C<n>~ | show after/before/around context |
+
+*** Highlight
+| ~SPC s c~ | Clean evil-search-highlight-persist |
 
 *** HTML
 | ~SPC m .~   | into micro state                                          |
@@ -783,13 +779,29 @@
 | ~SPC m r w~ | wrap current element                                      |
 | ~SPC m z~   | fold/unfold current element                               |
 
+*** Iedit
+| ~SPC s e~     | Enter iedit mode                                                   |
+| In iedit mode |                                                                    |
+| ~F~           | limit the scope to the current function                            |
+| ~L~           | limit the scope to the current line                                |
+| ~J~           | increase the scope (starting from the current line) one line below |
+| ~K~           | increase the scope one line above                                  |
+| ~n,N,TAB~     | navigate between the occurrences                                   |
+
 *** Magit
 | ~SPC g s~ | git status |
+
+*** NeoTree
+| ~U~       | Up level of node |
+| ~C-c C-p~ | Copy node        |
 
 *** Jump
 | ~SPC SPC~ | master branch: avy word                             |
 | ~SPC j j~ | develop branch: avy word                            |
 | ~SPC j i~ | jump-in-buffer, like tlist list functions in buffer |
+
+*** Package
+| ~SPC a k~ | paradox-list-packages |
 
 *** Projectile
 | ~SPC p d~ | find directory                      |
@@ -911,7 +923,13 @@ directly search into it like with ~SPC s p~.
 
 | Key Binding | Description                                                       |
 | ~SPC m x C~ | make region code or insert code (Github Flavored Markdown format) |
-   
+
+**** Buffer-wide commands
+| ~SPC m c p~ | preview                                                                              |
+| ~SPC m c P~ | live preview using engine defined with layer variable =markdown-live-preview-engine= |
+
+** Keymap guide
+https://github.com/syl20bnr/spacemacs/wiki/Keymaps-guide
 ** Help
 | ~SPC ?     | Show keybindings     |
 | ~SPC f e h | Discovery all layers |
@@ -929,7 +947,34 @@ directly search into it like with ~SPC s p~.
      )
      #+END_SRC
      
-** Troubleshoot
+* Troubleshoot
+** How to get major mode of current buffer
+   | M-: | (message "%s" major-mode) | Get major mode string |
+** Using Org-mode, in ubuntu, alt-shift-up is trapped by initial window picker
+*** Solution : Configure shortcut by compizconfig-settings-manager
+    1. sudo apt-get install compizconfig-settings-manager
+    2. Dash Home -> CompizConfig Settings Manager-> Scale(icon) under Windows Management Category ->
+       -> Bindings(tab) -> Initiate Windows Picker -> change to <Shift><Super>Up
+** Change coding system and refresh to current buffer
+   | revert-buffer-with-coding-system | Visit the current buffer's file again using coding system |
+   | Example: Simplified Chinese      | revert-buffer-with-coding-system gb2312                   |
+** Octave hangs by plotting with gnuplot
+*** Please refer to "" in octave.org
+** lambda become Geek symbol
+   | M-x prettify-symbols-mode | Toggle Prettify Symbols mode. |
+
+** Symbol's value as variable is void: fringe-mode
+   - Solution: build emacs binary with X (don't add option --with-no-x)
+** emacs hung up or stuck when startup or stop
+   - Root Cause: Maybe exist emacs server stucks.
+   - Solution: Kill all emacs processes.
+** Evil
+*** Cursor moves one position left after exiting insert mode?
+Moving one space left after leaving insert" is the default behavior in Vim,
+which evil (on top of which spacemacs is built) emulates by default. If you don't
+like that behavior, you can set (=setq evil-move-cursor-back nil=).
+
+** Spacemacs
 *** Enable layer cscope but 'SPC m' is undefined
     - Root Cause: It might be cscope doesn't enable in c-mode/cc-mode
     - Solution: Add layer 'c-c++' in .spacemacs
@@ -970,25 +1015,6 @@ enable copying/pasting with the mouse. You need to add this line to your
     - Solution: Edit =~/.emacs.d/layers/+tags/cscope/packages.el=
       commit: 7a0b49e * nonnn-develop cscope: Add prefix 'C-c s' series keybindings
 *** List all functions name in file
-*** =SPC h SPC= or =SPC h l= layers documents will disappear(only in develop branch)  
-* Troubleshoot
-** How to get major mode of current buffer
-   | M-: | (message "%s" major-mode) | Get major mode string |
-** Using Org-mode, in ubuntu, alt-shift-up is trapped by initial window picker
-*** Solution : Configure shortcut by compizconfig-settings-manager
-    1. sudo apt-get install compizconfig-settings-manager
-    2. Dash Home -> CompizConfig Settings Manager-> Scale(icon) under Windows Management Category ->
-       -> Bindings(tab) -> Initiate Windows Picker -> change to <Shift><Super>Up
-** Change coding system and refresh to current buffer
-   | revert-buffer-with-coding-system | Visit the current buffer's file again using coding system |
-   | Example: Simplified Chinese      | revert-buffer-with-coding-system gb2312                   |
-** Octave hangs by plotting with gnuplot
-*** Please refer to "" in octave.org
-** lambda become Geek symbol
-   | M-x prettify-symbols-mode | Toggle Prettify Symbols mode. |
-
-** Symbol's value as variable is void: fringe-mode
-   - Solution: build emacs binary with X (don't add option --with-no-x)
-** emacs hung up or stuck when startup or stop
-   - Root Cause: Maybe exist emacs server stucks. 
-   - Solution: Kill all emacs processes.
+*** =SPC h SPC= or =SPC h l= layers documents will disappear(only in develop branch)
+** Xterm special key combinations
+http://bamanzi.bitbucket.org/blog/2013/02/xterm-ctlseqs-and-emacs.html
