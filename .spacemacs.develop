@@ -57,6 +57,8 @@ values."
      ;; themes-megapack
      theming
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     octave
+     docker
      ;; Private layers
      editing-utils
      )
