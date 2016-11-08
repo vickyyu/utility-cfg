@@ -7,7 +7,7 @@ your =.emacs.d/private/=
 For example:
 #+BEGIN_SRC sh
 ln -s `pwd`/editing-utils ~/.emacs.d/private/editing-utils
-ln -s `pwd`/snippet/c-mode ~/.emacs.d/privatex/snippets/c-mode
+ln -s `pwd`/snippets/c-mode ~/.emacs.d/private/snippets/c-mode
 #+END_SRC
 
 2. Don't forget to enable layers in your =~/.spacemacs=
