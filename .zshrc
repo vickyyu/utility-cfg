@@ -90,6 +90,9 @@ export LANG=zh_TW.UTF-8
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# Terminal
+[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+
 # Emacs
 if [ -n "$INSIDE_EMACS" ]; then
        export TERM=xterm-256color
