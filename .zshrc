@@ -6,6 +6,12 @@ export ZSH=/Users/apple/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
+if [ -n "$INSIDE_EMACS" ]; then
+       # Simple theme to most compatibility
+       export ZSH_THEME="risto"
+else
+       export ZSH_THEME="bira"
+fi
 ZSH_THEME="bira" 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -83,6 +89,16 @@ export LANG=zh_TW.UTF-8
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Emacs
+if [ -n "$INSIDE_EMACS" ]; then
+       export TERM=xterm-256color
+       # Change emacs default-directory variable
+       chpwd() { print -P "\033AnSiTc %d" }
+       print -P "\033AnSiTu %n"
+       print -P "\033AnSiTc %d"
+       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=magenta'
+fi
 
 export CLICOLOR=1
 export LSCOLORS=dxfxcxdxbxegedabagacad
