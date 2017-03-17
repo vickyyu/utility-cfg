@@ -56,7 +56,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(osx git docker docker-compose tmux gitfast zsh-autosuggestions zsh-history-substring-search fasd emacs)
+plugins=(osx git docker docker-compose tmux gitfast zsh-autosuggestions history-substring-search fasd emacs)
 
 # User configuration
 
