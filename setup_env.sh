@@ -10,17 +10,17 @@ fi
 if [ ! -d $HOME/env/emacs.d ]; then
 	git clone https://github.com/vickyyu/emacs.d -b os-mac-v1 $HOME/env/emacs.d
 fi
-if [ ! -d $HOME/env/tmux-plugins ]; then
-	mkdir $HOME/env/tmux-plugins
+if [ ! -d $HOME/.tmux/plugins ]; then
+	mkdir -p $HOME/.tmux/plugins
 fi
-if [ ! -d $HOME/env/tmux-plugins/tmux-sensible ]; then
-	git clone https://git::@github.com/tmux-plugins/tmux-sensible $HOME/env/tmux-plugins/tmux-sensible
+if [ ! -d $HOME/.tmux/plugins/tmux-sensible ]; then
+	git clone https://git::@github.com/plugins/tmux-sensible $HOME/.tmux/plugins/tmux-sensible
 fi
-if [ ! -d $HOME/env/tmux-plugins/tpm ]; then
-	git clone https://github.com/tmux-plugins/tpm $HOME/env/tmux-plugins/tpm
+if [ ! -d $HOME/.tmux/plugins/tpm ]; then
+	git clone https://github.com/plugins/tpm $HOME/.tmux/plugins/tpm
 fi
-if [ ! -d $HOME/env/tmux-plugins/tmux-resurrect ]; then
-	git clone https://git::@github.com/tmux-plugins/tmux-resurrect $HOME/env/tmux-plugins/tmux-resurrect
+if [ ! -d $HOME/.tmux/tmux-plugins/tmux-resurrect ]; then
+	git clone https://git::@github.com/plugins/tmux-resurrect $HOME/.tmux/plugins/tmux-resurrect
 fi
 if [ ! -L $HOME/.emacs.d ]; then
 	ln -s $HOME/spacemacs $HOME/.emacs.d
