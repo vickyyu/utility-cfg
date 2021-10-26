@@ -14,9 +14,6 @@ alias 'glg'='git log --color --name-only --decorate'
 alias 'glp'='git log --pretty=format:'%h:%s:%d' --topo-order --graph'
 alias 'glol'="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias 'gsps'='git show --color'
-alias 'grh'='git reset --hard'
-alias 'grs'='git reset --soft'
-alias 'gac'='git add -u;git commit'
 
 # include git-completion
 . ~/.bash_completion.d/git-completion.bash
