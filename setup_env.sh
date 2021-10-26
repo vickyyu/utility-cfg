@@ -49,3 +49,7 @@ fi
 if [ ! -L $HOME/.zshrc ]; then
 	ln -s $HOME/env/utility-cfg/.zshrc $HOME/.zshrc
 fi
+if [ ! -f $HOME/bin/csgen.sh ]; then
+	mkdir bin
+	ln -s $HOME/env/utility-cfg/csgen.sh $HOME/bin/csgen.sh
+fi
