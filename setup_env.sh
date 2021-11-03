@@ -27,6 +27,6 @@ fi
 [ ! -L $HOME/.bash_completion.d ] && ln -s $HOME/env/utility-cfg/.bash_completion.d $HOME/.bash_completion.d
 
 # vim
-[ ! -L $HOME/.vim ] && ln -s $HOME/env/utility-cfg/vim/.vim $HOME/.vim
+[ ! -L $HOME/.vim ] && ln -s $HOME/env/utility-cfg/vim $HOME/.vim
 [ ! -L $HOME/.vimrc ] && ln -s $HOME/env/utility-cfg/vim/.vimrc $HOME/.vimrc
 
