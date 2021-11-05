@@ -75,10 +75,15 @@ source $ZSH/oh-my-zsh.sh
 
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
-#export LANG=zh_TW.UTF-8
-export LC_ALL=zh_US.UTF-8
-export LC_CTYPE=zh_US.UTF-8
+# The command "locale -a" can list local supported language
+
+#export LANG=en_US.UTF-8
+export LANG=zh_TW.UTF-8
+export LC_ALL=zh_TW.UTF-8
+
+#export LANG=lzh_TW.utf8
+#export LC_ALL=lzh_TW.utf8
+#export LC_CTYPE=lzh_TW.utf8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
