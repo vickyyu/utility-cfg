@@ -573,6 +573,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
               '("linux" (c-lineup-gcc-asm-reg)))
               (setq indent-tabs-mode t)
               (setq tab-width 8)))
+  (add-hook 'c-mode-common-hook 'helm-cscope-mode)
   ;; Shell/Term
   (custom-set-variables
    '(multi-term-program "/bin/bash")
