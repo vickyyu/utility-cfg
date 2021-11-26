@@ -30,3 +30,5 @@ fi
 [ ! -L $HOME/.vim ] && ln -s $HOME/env/utility-cfg/vim $HOME/.vim
 [ ! -L $HOME/.vimrc ] && ln -s $HOME/env/utility-cfg/vim/.vimrc $HOME/.vimrc
 
+# aspell
+[ ! -L $HOME/.aspell.conf ] && ln -s $HOME/env/utility-cfg/.aspell.conf $HOME/.aspell.conf
