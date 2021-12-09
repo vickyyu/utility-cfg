@@ -4,6 +4,7 @@ set cinoptions=:0
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 let g:DirDiffExcludes="*.o,*.d,*.out,*.swp,.svn,*.a"
 let g:DirDiffAddArgs = "-w" 
+colorscheme elflord
 
 if $VIM_HATE_SPACE_ERRORS != '0'
       let c_space_errors=1
