@@ -22,7 +22,7 @@ fi
 [ ! -L $HOME/.tmux.conf ] && ln -s $HOME/env/utility-cfg/.tmux.conf $HOME/.tmux.conf
 [ ! -d $HOME/.tmux/plugins ] && mkdir -p $HOME/.tmux/plugins
 [ ! -d $HOME/.tmux/plugins/tmux-sensible ] && git clone https://github.com/tmux-plugins/tmux-sensible $HOME/.tmux/plugins/tmux-sensible
-[ ! -d $HOME/.tmux/plugins/tpm ] && clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+[ ! -d $HOME/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 [ ! -d $HOME/.tmux/plugins/tmux-resurrect ] && git clone https://github.com/tmux-plugins/tmux-resurrect $HOME/.tmux/plugins/tmux-resurrect
 [ ! -L $HOME/.bash_completion.d ] && ln -s $HOME/env/utility-cfg/.bash_completion.d $HOME/.bash_completion.d
 
